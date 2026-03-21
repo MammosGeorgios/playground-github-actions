@@ -1,6 +1,6 @@
 name: GitHub Actions Artifact Demo
 run-name: ${{ github.actor }} is testing out GitHub Artifact
-on: [push]
+on: [ push ]
 jobs:
   Explore-GitHub-Artifacts:
     runs-on: ubuntu-latest
@@ -13,20 +13,14 @@ jobs:
         with:
           name: mock-jmh-report
           path: .resources/mock-jmh-results.json
-
-# WIP
-      - run: echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
-      - run: | 
+      - name: Set environment variable
+        run: |
+          echo 'MOCK_JSON<<EOF' >> $GITHUB_ENV
+          cat .resources/mock-jmh-results.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - name: Show Json in $GITHUB_STEP_SUMMARY
+        run: |
+          echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+          cat ${{env.MOCK_JSON}} >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-        
-
-        #          echo 'JSON<<EOF' >> $GITHUB_STEP_SUMMARY
-        #          echo 'EOF' >> $GITHUB_STEP_SUMMARY
-
-
-#      - run: echo "## Mock Markdown table" >> $GITHUB_STEP_SUMMARY
-#        run: |
-#
-        
