@@ -15,16 +15,12 @@ jobs:
           path: .resources/mock-jmh-results.json
 
       - run: echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
-      - run: echo "```json" >> $GITHUB_STEP_SUMMARY
       - run: |
-          { "jmhVersion" : "1.37",
-            "benchmark" : "gr.mammos.practice.benchmark.MockTests.concat",
-            "mode" : "thrpt",
-            "threads" : 1,
-            "forks" : 1,
-            "jvm" : "C:\\Java\\.jdks\\azul-25.0.1\\bin\\java.exe"
-          } >> $GITHUB_STEP_SUMMARY
-      - run: echo "```" >> $GITHUB_STEP_SUMMARY
+          echo "```json" >> $GITHUB_STEP_SUMMARY
+#          echo 'JSON<<EOF' >> $GITHUB_STEP_SUMMARY
+          cat .resoursec/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+#          echo 'EOF' >> $GITHUB_STEP_SUMMARY
+          echo "```" >> $GITHUB_STEP_SUMMARY
 
 #      - run: echo "## Mock Markdown table" >> $GITHUB_STEP_SUMMARY
 #        run: |
