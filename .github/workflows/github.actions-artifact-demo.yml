@@ -19,6 +19,22 @@ jobs:
           cat .resources/mock-jmh-results.json >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
+      # Output specific data from the json
+      - run: echo "## Read specific properties from json" >> $GITHUB_STEP_SUMMARY
+      - run: echo "- JmhVersion - ${{fromJSON(env.MOCK_JSON)[0].jmhVersion}}">> $GITHUB_STEP_SUMMARY
+      - run: |
+          for result in ${{fromJSON(env.MOCK_JSON)}}
+          do 
+            echo "$result"
+          done
+          
+
+      - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
+      - run: |
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
 # This doesn't work well, it breaks the styling and the json appears weird..
 #      - run: echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
 #      - run: |
@@ -27,12 +43,3 @@ jobs:
 #          echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
 #          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
-      - run: echo "## Mock Json content directly from file" >> $GITHUB_STEP_SUMMARY
-      - run: |
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-
-# Output specific data from the json
-      - run: echo "## Read specific properties from json" >> $GITHUB_STEP_SUMMARY
-      - run: echo "- JmhVersion - ${{fromJSON(env.MOCK_JSON)[0].jmhVersion}}">> $GITHUB_STEP_SUMMARY
