@@ -17,7 +17,7 @@ jobs:
       - run: echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
       - run: |
           echo "```json" >> $GITHUB_STEP_SUMMARY
-          cat .resoursec/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
           echo "```" >> $GITHUB_STEP_SUMMARY
         
 
