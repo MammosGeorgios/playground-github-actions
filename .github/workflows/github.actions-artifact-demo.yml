@@ -28,8 +28,10 @@ jobs:
 #            echo "$result"
 #          done
 #      - run: echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' .resources/mock-jmh-results.json ) >> $GITHUB_STEP_SUMMARY
-      - run: echo "|idx| Name                                                        | Mode  | Result                | " >> $GITHUB_STEP_SUMMARY
-      - run: echo "|---|-------------------------------------------------------------|-------|-----------------------|" >> $GITHUB_STEP_SUMMARY
+      - run: |
+          echo "|idx| Name                                                        | Mode  | Result                |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|-------------------------------------------------------------|-------|-----------------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 0 | gr.mammos.practice.benchmark.MockTests.concat               | thrpt | 273913946.2476245     |" >> $GITHUB_STEP_SUMMARY
       - run: echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) |"' .resources/mock-jmh-results.json ) >> $GITHUB_STEP_SUMMARY
 
 
