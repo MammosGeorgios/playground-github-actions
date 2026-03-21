@@ -32,3 +32,6 @@ jobs:
           echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
           cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+# Output specific data from the json
+      - run: echo "JmhVersion - ${{fromJson(env.MOCK_JSON.jmhVersion)}}"
