@@ -1,0 +1,46 @@
+name: GitHub Actions Artifact Demo
+run-name: ${{ github.actor }} is testing out GitHub Artifact
+on: [ push ]
+jobs:
+  Explore-GitHub-Artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - run: echo "# Artifacts and results output demos" >> $GITHUB_STEP_SUMMARY
+      - name: Store mock file
+        uses: actions/upload-artifact@v4
+        with:
+          name: mock-jmh-report
+          path: .resources/mock-jmh-results.json
+      - name: Set environment variable
+        run: |
+          echo 'MOCK_JSON<<EOF' >> $GITHUB_ENV
+          cat .resources/mock-jmh-results.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      # Output specific data from the json
+      - run: echo "## Read specific properties from json" >> $GITHUB_STEP_SUMMARY
+      - run: echo "- JmhVersion - ${{fromJSON(env.MOCK_JSON)[0].jmhVersion}}">> $GITHUB_STEP_SUMMARY
+#      - run: echo "$(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' .resources/mock-jmh-results.json )" >> $GITHUB_STEP_SUMMARY
+#      Without "" around the $(command), we lose line breaks!
+      - run: |
+          echo "|idx| Name                                                        | Mode  | Result                |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|-------------------------------------------------------------|-------|-----------------------|" >> $GITHUB_STEP_SUMMARY
+          echo "$(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' .resources/mock-jmh-results.json )" >> $GITHUB_STEP_SUMMARY
+
+
+      - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
+      - run: |
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+# This doesn't work well, it breaks the styling and the json appears weird..
+#      - run: echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
+#      - run: |
+#          echo $'\n' >> $GITHUB_STEP_SUMMARY
+#          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+#          echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
+#          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
