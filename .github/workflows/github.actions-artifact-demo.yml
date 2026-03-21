@@ -34,4 +34,4 @@ jobs:
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
 # Output specific data from the json
-      - run: echo "JmhVersion - ${{fromJson(env.MOCK_JSON.jmhVersion)}}"
+      - run: echo "JmhVersion - ${{fromJSON(env.MOCK_JSON.jmhVersion)}}"
