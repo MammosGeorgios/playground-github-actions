@@ -27,20 +27,9 @@ jobs:
 #          do
 #            echo "$result"
 #          done
-      - uses: cloudposse/github-action-jq@main
-        with:
-          compact: true
-          input: '["test", "test2", "test3"]'
-          script: |-
-            map(select(. == "test"))
-      - uses: cloudposse/github-action-jq@main
-        with:
-          compact: true
-          input: ${{env.MOCK_JSON}}
-          script: -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"') >> $GITHUB_STEP_SUMMARY
+#      - run: echo $($env.MOCK_JSON | jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"') >> $GITHUB_STEP_SUMMARY
+      - run: echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' $env.MOCK_JSON) >> $GITHUB_STEP_SUMMARY
 
-      - run: echo $($env.MOCK_JSON | jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"') >> $GITHUB_STEP_SUMMARY
-          
 
       - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
       - run: |
