@@ -22,5 +22,5 @@ jobs:
         run: |
           echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          echo ${{env.MOCK_JSON}} >> $GITHUB_STEP_SUMMARY
+          echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
