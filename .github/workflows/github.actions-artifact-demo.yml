@@ -22,11 +22,12 @@ jobs:
       # Output specific data from the json
       - run: echo "## Read specific properties from json" >> $GITHUB_STEP_SUMMARY
       - run: echo "- JmhVersion - ${{fromJSON(env.MOCK_JSON)[0].jmhVersion}}">> $GITHUB_STEP_SUMMARY
-      - run: |
-          for result in ${{fromJSON(env.MOCK_JSON).include }}
-          do 
-            echo "$result"
-          done
+#      - run: |
+#          for result in ${{fromJSON(env.MOCK_JSON).include }}
+#          do
+#            echo "$result"
+#          done
+      - run: echo ${{fromJSON(env.MOCK_JSON)}} | jq -r 'experiments'
           
 
       - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
