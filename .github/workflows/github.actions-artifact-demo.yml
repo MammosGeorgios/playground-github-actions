@@ -27,7 +27,7 @@ jobs:
 #          do
 #            echo "$result"
 #          done
-      - run: echo $(echo env.MOCK_JSON | jq -r 'experiments')
+      - run: echo $(echo $env.MOCK_JSON | jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"')
           
 
       - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
