@@ -19,12 +19,13 @@ jobs:
           cat .resources/mock-jmh-results.json >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
-      - run: echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
-      - run: |
-          echo $'\n' >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-          echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+# This doesn't work well, it breaks the styling and the json appears weird..
+#      - run: echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
+#      - run: |
+#          echo $'\n' >> $GITHUB_STEP_SUMMARY
+#          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+#          echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
+#          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
       - run: echo "## Mock Json content directly from file" >> $GITHUB_STEP_SUMMARY
       - run: |
