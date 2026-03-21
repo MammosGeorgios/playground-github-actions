@@ -27,7 +27,7 @@ jobs:
 #          do
 #            echo "$result"
 #          done
-      - run: echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |" echo $'\n'' .resources/mock-jmh-results.json ) >> $GITHUB_STEP_SUMMARY
+      - run: echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |", echo $'\n'' .resources/mock-jmh-results.json ) >> $GITHUB_STEP_SUMMARY
       - run: |
           echo "|idx| Name                                                        | Mode  | Result                |" >> $GITHUB_STEP_SUMMARY
           echo "|---|-------------------------------------------------------------|-------|-----------------------|" >> $GITHUB_STEP_SUMMARY
