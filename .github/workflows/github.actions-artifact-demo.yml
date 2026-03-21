@@ -31,7 +31,7 @@ jobs:
       - run: |
           echo "|idx| Name                                                        | Mode  | Result                |" >> $GITHUB_STEP_SUMMARY
           echo "|---|-------------------------------------------------------------|-------|-----------------------|" >> $GITHUB_STEP_SUMMARY
-          echo $(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' .resources/mock-jmh-results.json )$'\n' >> $GITHUB_STEP_SUMMARY
+          echo "STATS<<EOF"$(jq -r 'to_entries[] |  "| \(.key) |  \(.value.benchmark) | \(.value.mode) | \(.value.primaryMetric.score) |"' .resources/mock-jmh-results.json )$'\n'EOF >> $GITHUB_STEP_SUMMARY
 
 
       - run: echo "## Full json results" >> $GITHUB_STEP_SUMMARY
