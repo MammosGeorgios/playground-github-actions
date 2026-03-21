@@ -21,7 +21,7 @@ jobs:
       - name: Show Json in $GITHUB_STEP_SUMMARY
         run: |
           echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
-          echo "WHERE IS THIS LINE?!?!?!?!?!" >> $GITHUB_STEP_SUMMARY
+          echo "WHERE \n IS \n THIS LINE?!?!?!?!?!\n" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
           echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
