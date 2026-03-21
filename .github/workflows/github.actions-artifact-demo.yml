@@ -34,4 +34,5 @@ jobs:
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
 # Output specific data from the json
-      - run: echo "${{fromJSON(env.MOCK_JSON)}}"
+      - run: echo "## Read specific properties from json" >> $GITHUB_STEP_SUMMARY
+      - run: echo "${{fromJSON(env.MOCK_JSON).jmhVersion}}">> $GITHUB_STEP_SUMMARY
