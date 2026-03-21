@@ -20,7 +20,12 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
       - name: Show Json in $GITHUB_STEP_SUMMARY
         run: |
-          echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
+          echo "## Mock Json content from env property" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
           echo "${{env.MOCK_JSON}}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+      - run: echo "## Mock Json content directly from file" >> $GITHUB_STEP_SUMMARY
+      - run: |
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
