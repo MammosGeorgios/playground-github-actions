@@ -14,10 +14,12 @@ jobs:
           name: mock-jmh-report
           path: .resources/mock-jmh-results.json
 
+# WIP
       - run: echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
-      - run: echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-      - run: cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
-      - run: echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+      - run: | 
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          cat .resources/mock-jmh-results.json >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
         
 
         #          echo 'JSON<<EOF' >> $GITHUB_STEP_SUMMARY
