@@ -2,9 +2,11 @@ name: GitHub Actions Artifact Demo
 run-name: ${{ github.actor }} is testing out GitHub Artifact
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Explore-GitHub-Artifacts:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
       - run: echo "## Hello Summary World" >> $GITHUB_STEP_SUMMARY
       - name: Store mock file
         uses: actions/upload-artifact@v4
