@@ -7,9 +7,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-      - run: echo "## Hello Summary World" >> $GITHUB_STEP_SUMMARY
+      - run: echo "# Artifacts and results output demos" >> $GITHUB_STEP_SUMMARY
       - name: Store mock file
         uses: actions/upload-artifact@v4
         with:
           name: mock-jmh-report
           path: .resources/mock-jmh-results.json
+
+      - run: echo "## Mock Json content" >> $GITHUB_STEP_SUMMARY
+      - run: echo "```json" >> $GITHUB_STEP_SUMMARY
+      - run: |
+          { "jmhVersion" : "1.37",
+            "benchmark" : "gr.mammos.practice.benchmark.MockTests.concat",
+            "mode" : "thrpt",
+            "threads" : 1,
+            "forks" : 1,
+            "jvm" : "C:\\Java\\.jdks\\azul-25.0.1\\bin\\java.exe"
+          } >> $GITHUB_STEP_SUMMARY
+      - run: echo "```" >> $GITHUB_STEP_SUMMARY
+
+#      - run: echo "## Mock Markdown table" >> $GITHUB_STEP_SUMMARY
+#        run: |
+#
+        
