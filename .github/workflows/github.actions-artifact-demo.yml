@@ -5,7 +5,7 @@ on:
     branches:
       - "*"
   schedule:
-    - cron: "45 */1 * * *"
+    - cron: "0 */1 * * *"
 jobs:
   Explore-GitHub-Artifacts:
     runs-on: ubuntu-latest

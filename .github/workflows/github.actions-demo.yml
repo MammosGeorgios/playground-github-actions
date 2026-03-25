@@ -1,7 +1,7 @@
 # https://docs.github.com/en/actions/get-started/quickstart
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-#on: [push]
+on: release
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -20,3 +20,4 @@ jobs:
       - name: Adding markdown in summary page
         run: echo "# Summary Page" >> $GITHUB_STEP_SUMMARY
       - run: echo "## Hello World" >> $GITHUB_STEP_SUMMARY
+
