@@ -1,6 +1,11 @@
 name: GitHub Actions Artifact Demo
 run-name: ${{ github.actor }} is testing out GitHub Artifact
-on: [ push ]
+on:
+  push:
+    branches:
+      - "*"
+  schedule:
+    - cron: "45 */1 * * *"
 jobs:
   Explore-GitHub-Artifacts:
     runs-on: ubuntu-latest
